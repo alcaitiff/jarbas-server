@@ -1,0 +1,5 @@
+{
+  "clear": "DELETE FROM intent WHERE name=@name",
+  "insert": "INSERT INTO intent (name,data) VALUES (@name,@data)",
+  "load": "SELECT * FROM intent WHERE name=@name"
+}

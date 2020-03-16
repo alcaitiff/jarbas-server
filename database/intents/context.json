@@ -1,0 +1,22 @@
+{
+  "name": "context",
+  "data": {
+    "regular_expression_entries": [
+      {
+        "value": "(?<value>.+)",
+        "key": "FREE_VALUE",
+        "responses": [
+          "ok"
+        ]
+      }
+    ],
+    "entries": {
+      "sim": [
+        "ok"
+      ],
+      "não": [
+        "ok"
+      ]
+    }
+  }
+}

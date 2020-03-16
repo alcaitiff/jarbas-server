@@ -1,0 +1,5 @@
+{
+  "clear": "DELETE FROM memory WHERE owner=@owner",
+  "insert": "INSERT INTO memory (owner,data) VALUES (@owner,@data)",
+  "load": "SELECT * FROM memory WHERE owner=@owner"
+}

@@ -1,0 +1,48 @@
+{
+  "name": "greet",
+  "data": {
+    "regular_expression_entries": [
+      {
+        "value": "(?<greet>oi|ola|olá) (?<name>.+)",
+        "key": "NAMED",
+        "responses": [
+          "olá! Você me chamou de :NAME?",
+          "oi! Você me chamou de :NAME?"
+        ]
+      },
+      {
+        "value": "(?<greet>bom dia|boa noite|boa tarde) (?<name>.+)",
+        "key": "NAMED_TIME",
+        "responses": [
+          ":TIME_GREET! Você me chamou de :NAME?"
+        ]
+      }
+    ],
+    "entries": {
+      "oi": [
+        "olá"
+      ],
+      "oi!": [
+        "olá"
+      ],
+      "olá": [
+        "oi"
+      ],
+      "olá!": [
+        "oi"
+      ],
+      "tudo bem?": [
+        "tudo bem e com você?"
+      ],
+      "bom dia": [
+        ":TIME_GREET"
+      ],
+      "boa tarde": [
+        ":TIME_GREET"
+      ],
+      "boa noite": [
+        ":TIME_GREET"
+      ]
+    }
+  }
+}
