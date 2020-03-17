@@ -1,24 +1,21 @@
-# jarbas-pwa
+# jarbas-server
 
 ## Project setup
-```
+
+```bash
 yarn install
 ```
 
 ### Compiles and hot-reloads for development
-```
-yarn serve
+
+```bash
+yarn start
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### Run on terminal
 
-### Lints and fixes files
+```bash
+cd src
+./run.js train
+./run.js process <user> <msg>
 ```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
