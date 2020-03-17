@@ -1,0 +1,6 @@
+{
+  "clear": "DELETE FROM persisted WHERE property=@property",
+  "insert": "INSERT INTO persisted (property,value) VALUES (@property,@value)",
+  "update": "UPDATE persisted SET value=@value WHERE property=@property",
+  "load": "SELECT * FROM persisted WHERE property=@property"
+}

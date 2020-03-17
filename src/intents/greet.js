@@ -1,4 +1,7 @@
 const randomResponseFrom = require('../lib/randomElement.js');
+const substitutions = require('../lib/substitutions.js');
+const memory = require('../dao/memory.js');
+const botNameQuestion = require('../../database/questions/botname.json');
 const greet = {
   name: "greet",
   data: null,
@@ -36,12 +39,14 @@ const greet = {
     } else if (this.match === 'NAMED') {
       response = randomResponseFrom(this.data.regular_expression_entries[this.key].responses);
       response = response.split(':NAME').join(this.named);
+      this.setQuestion(this.named, user);
     } else if (this.match === 'NAMED_TIME') {
       response = randomResponseFrom(this.data.regular_expression_entries[this.key].responses);
       response = response.split(':NAME').join(this.named);
       response = response.split(':TIME_GREET').join(this.getTimeGreet());
+      this.setQuestion(this.named, user);
     }
-    response
+
     return {
       original: v,
       value: response,
@@ -49,6 +54,18 @@ const greet = {
       match_type: this.match,
       type: 'msg'
     }
+  },
+  setQuestion(name, user) {
+    const m = memory.get(user);
+    botNameQuestion.Y.persisted = [
+      {
+        "property": "BOT_NAME",
+        "value": name
+      }
+    ];
+    m.question = Object.values(botNameQuestion);
+    substitutions.add(m.question, [{ "key": ":NAME", "value": name }]);
+    memory.set(user, m);
   },
   getTimeGreet() {
     const h = (new Date()).getHours();

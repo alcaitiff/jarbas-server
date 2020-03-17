@@ -1,0 +1,25 @@
+{
+  "Y": {
+    "persisted": [],
+    "value": "^(?<value>sim|claro|óbvio|obvio|s|y|yes|si)$",
+    "key": "NAMED",
+    "responses": [
+      "ok! Agora eu me chamo :NAME",
+      "perfeito! Desde já serei conhecida como :NAME",
+      ":NAME... acho que era assim que meu pai me chamava",
+      "tá! Meu nome agora é :NAME",
+      ":NAME é um belo nome. Obrigada"
+    ]
+  },
+  "N": {
+    "persisted": [],
+    "value": "^(?<value>não|nao|no|n|nunca|jamais)$",
+    "key": "NAMED",
+    "responses": [
+      "não está mais aqui quem falou",
+      "sem problemas! Se mudar de ideia é só falar",
+      "ufa, eu já estava me preparando para fazer novos documentos",
+      "tá bem"
+    ]
+  }
+}
