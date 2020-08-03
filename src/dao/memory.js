@@ -13,6 +13,9 @@ const memory = {
   },
   set(user, data) {
     db.prepare(model.update).run({ "owner": user, "data": JSON.stringify(data) });
+  },
+  clear(user){
+    db.prepare(model.clear).run({"owner":user});
   }
 };
 module.exports = memory;

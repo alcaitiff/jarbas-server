@@ -6,6 +6,7 @@ const context = {
   name: "context",
   data: null,
   context: null,
+  matchType:null,
   match(v, user, db) {
     this.load(db, user);
     const str = v.toLowerCase().trim();
@@ -15,6 +16,7 @@ const context = {
         let match = str.match(reg);
         if (match) {
           this.key = i;
+          this.matchType = 'EXACT';
           return true;
         }
       }
@@ -22,10 +24,20 @@ const context = {
     return false;
   },
   process(v, user, db) {
-    const q = this.context.question[this.key];
-    q.persisted.forEach(e => persist.set(e.property, e.value));
-    const response = randomResponseFrom(q.responses);
-    return substitutions.do(q.substitutions, response);
+    if(this.key){
+      const q = this.context.question[this.key];
+      q.persisted.forEach(e => persist.set(e.property, e.value));
+      const response = randomResponseFrom(q.responses);
+      //clear context
+      memory.clear(user);
+      return {
+        original: v,
+        value: substitutions.do(q.substitutions, response),
+        intent: this.name,
+        match_type: this.matchType,
+        type: 'msg'
+      }
+    }
   },
   load(db, user) {
     if (!this.data) {

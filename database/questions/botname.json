@@ -5,10 +5,10 @@
     "key": "NAMED",
     "responses": [
       "ok! Agora eu me chamo :NAME",
-      "perfeito! Desde já serei conhecida como :NAME",
+      "perfeito! Desde já serei :NAME",
       ":NAME... acho que era assim que meu pai me chamava",
       "tá! Meu nome agora é :NAME",
-      ":NAME é um belo nome. Obrigada"
+      ":NAME é um belo nome."
     ]
   },
   "N": {

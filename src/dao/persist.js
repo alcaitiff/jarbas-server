@@ -12,7 +12,7 @@ const persist = {
     }
   },
   set(property, value) {
-    db.prepare(model.update).run({ "property": property, "value": value });
+    db.prepare(model.replace).run({ "property": property, "value": value });
   }
 };
 module.exports = persist;
