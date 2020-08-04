@@ -24,7 +24,7 @@ const context = {
     return false;
   },
   process(v, user, db) {
-    if(this.key){
+    if(this.key>=0){
       const q = this.context.question[this.key];
       q.persisted.forEach(e => persist.set(e.property, e.value));
       const response = randomResponseFrom(q.responses);

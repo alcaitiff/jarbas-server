@@ -3,6 +3,13 @@
   "data": {
     "regular_expression_entries": [
       {
+        "value": "(?<greet>oi|ola|olá|bom dia|boa noite|boa tarde) (?<name>.+)",
+        "key": "CORRECT_NAMED",
+        "responses": [
+          ":TIME_GREET!"
+        ]
+      },
+      {
         "value": "(?<greet>oi|ola|olá) (?<name>.+)",
         "key": "NAMED",
         "responses": [

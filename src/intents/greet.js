@@ -1,6 +1,7 @@
 const randomResponseFrom = require('../lib/randomElement.js');
 const substitutions = require('../lib/substitutions.js');
 const memory = require('../dao/memory.js');
+const persist = require('../dao/persist.js');
 const botNameQuestion = require('../../database/questions/botname.json');
 const greet = {
   name: "greet",
@@ -21,6 +22,11 @@ const greet = {
         let reg = new RegExp(this.data.regular_expression_entries[i].value, "i");
         let match = str.match(reg);
         if (match) {
+          if(this.data.regular_expression_entries[i].key === 'CORRECT_NAMED'){
+            if(!this.sameName(match.groups.name)){
+              continue;
+            }
+          }
           this.match = this.data.regular_expression_entries[i].key;
           this.named = match.groups.name;
           this.greet = match.groups.greet;
@@ -35,6 +41,9 @@ const greet = {
     let response;
     if (this.match === 'EXACT') {
       response = randomResponseFrom(this.data.entries[this.key]);
+      response = response.split(':TIME_GREET').join(this.getTimeGreet());
+    } else if (this.match === 'CORRECT_NAMED') {
+      response = randomResponseFrom(this.data.regular_expression_entries[this.key].responses);
       response = response.split(':TIME_GREET').join(this.getTimeGreet());
     } else if (this.match === 'NAMED') {
       response = randomResponseFrom(this.data.regular_expression_entries[this.key].responses);
@@ -72,6 +81,10 @@ const greet = {
     if (h > 4 && h < 12) return "bom dia";
     if (h > 11 && h < 18) return "boa tarde";
     return "boa noite";
+  },
+  sameName(name){
+    const current = persist.get('BOT_NAME');
+    return current == name;
   },
   load(db) {
     if (!this.data) {

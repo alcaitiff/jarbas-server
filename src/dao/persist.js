@@ -3,7 +3,7 @@ const model = require('../../database/model/persist.json');
 const persist = {
   get(property) {
     const v = db.prepare(model.load).get({ "property": property });
-    const m = v && JSON.parse(v);
+    const m = v;
     if (!m) {
       db.prepare(model.insert).run({ "property": property, "value": "" });
       return "";

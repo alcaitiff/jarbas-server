@@ -12,7 +12,7 @@ const memory = {
     }
   },
   set(user, data) {
-    db.prepare(model.update).run({ "owner": user, "data": JSON.stringify(data) });
+    db.prepare(model.replace).run({ "owner": user, "data": JSON.stringify(data) });
   },
   clear(user){
     db.prepare(model.clear).run({"owner":user});
