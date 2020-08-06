@@ -1,0 +1,15 @@
+{
+  "name": "historySearch",
+  "data": {
+    "regular_expression_entries": [
+      {
+        "value": "(me )?(veja|procure|localize|encontre|lembre|mostre)?(-me| para mim|por favor|por obséquio)? ?(no|o|do)? ?(meu)? ?historico (?<needle>.+)",
+        "key": "HISTORY_SEARCH",
+        "responses": [
+          "ok! :HISTORY"
+        ]
+      }
+    ],
+    "entries": {}
+  }
+}

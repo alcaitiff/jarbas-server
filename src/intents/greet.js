@@ -59,7 +59,7 @@ const greet = {
     return {
       original: v,
       value: response,
-      intent: 'greet',
+      intent: this.name,
       match_type: this.match,
       type: 'msg'
     }
