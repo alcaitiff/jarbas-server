@@ -6,7 +6,7 @@ const files = fs.readdirSync('../database/intents');
 const trainer = {
   connector:null,
   createTables() {
-    ddl.forEach(v => connector.prepare(v).run());
+    ddl.forEach(v => this.connector.prepare(v).run());
   },
   populate() {
     files.forEach((f) => {
@@ -15,8 +15,8 @@ const trainer = {
     });
   },
   importFile(f) {
-    connector.prepare(intent.clear).run({ "name": f.name });
-    const stm = connector.prepare(intent.insert);
+    this.connector.prepare(intent.clear).run({ "name": f.name });
+    const stm = this.connector.prepare(intent.insert);
     stm.run({ "name": f.name, "data": JSON.stringify(f.data) });
   }
 };

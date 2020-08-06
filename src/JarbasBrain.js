@@ -13,7 +13,7 @@ const brain = {
   user: null,
   train() {
     const trainer = require('./trainer');
-    trainer.connector=db.connector();
+    trainer.connector=db.connector;
     trainer.createTables();
     trainer.populate();
   },

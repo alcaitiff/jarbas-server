@@ -48,7 +48,7 @@ const historySearch = {
       shell= execSync('echo -n $SHELL').toString();
       bin= execSync('echo -n $(basename $SHELL)').toString();
       if(bin=="zsh"){
-        data = execSync('export HISTFILE=~/.$(basename $SHELL)_history; fc -R;history|grep "'+needle+'"',{"shell":shell}).toString();
+        data = execSync('export HISTSIZE=50000;export HISTFILE=~/.$(basename $SHELL)_history; fc -R;fc -l 1|grep "'+needle+'"',{"shell":shell}).toString();
       }else{
         data = execSync('export HISTFILE=~/.$(basename $SHELL)_history; set -o history;history|grep "'+needle+'"',{"shell":shell}).toString();
       }
