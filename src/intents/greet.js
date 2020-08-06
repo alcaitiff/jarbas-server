@@ -23,7 +23,7 @@ const greet = {
         let match = str.match(reg);
         if (match) {
           if(this.data.regular_expression_entries[i].key === 'CORRECT_NAMED'){
-            if(!this.sameName(match.groups.name)){
+            if(!this.sameName(match.groups.name,db)){
               continue;
             }
           }
@@ -48,12 +48,12 @@ const greet = {
     } else if (this.match === 'NAMED') {
       response = randomResponseFrom(this.data.regular_expression_entries[this.key].responses);
       response = response.split(':NAME').join(this.named);
-      this.setQuestion(this.named, user);
+      this.setQuestion(this.named, user,db);
     } else if (this.match === 'NAMED_TIME') {
       response = randomResponseFrom(this.data.regular_expression_entries[this.key].responses);
       response = response.split(':NAME').join(this.named);
       response = response.split(':TIME_GREET').join(this.getTimeGreet());
-      this.setQuestion(this.named, user);
+      this.setQuestion(this.named, user,db);
     }
 
     return {
@@ -64,7 +64,8 @@ const greet = {
       type: 'msg'
     }
   },
-  setQuestion(name, user) {
+  setQuestion(name, user, db) {
+    memory.connector=db.connector;
     const m = memory.get(user);
     botNameQuestion.Y.persisted = [
       {
@@ -82,7 +83,8 @@ const greet = {
     if (h > 11 && h < 18) return "boa tarde";
     return "boa noite";
   },
-  sameName(name){
+  sameName(name,db){
+    persist.connector = db.connector;
     const current = persist.get('BOT_NAME');
     return current == name;
   },

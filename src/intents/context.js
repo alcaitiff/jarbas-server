@@ -26,9 +26,11 @@ const context = {
   process(v, user, db) {
     if(this.key>=0){
       const q = this.context.question[this.key];
+      persist.connector = db.connector;
       q.persisted.forEach(e => persist.set(e.property, e.value));
       const response = randomResponseFrom(q.responses);
       //clear context
+      memory.connector=db.connector;
       memory.clear(user);
       return {
         original: v,
@@ -44,6 +46,7 @@ const context = {
       const d = db.connector.prepare(db.model.intent.load).get({ "name": this.name });
       this.data = d && JSON.parse(d.data);
     }
+    memory.connector=db.connector;
     this.context = memory.get(user);
   }
 };

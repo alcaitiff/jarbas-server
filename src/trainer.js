@@ -1,12 +1,12 @@
 const fs = require('fs');
-const db = require('../database/db.js');
 const ddl = require('../database/model/ddl.json');
 const intent = require('../database/model/intent.json');
 const files = fs.readdirSync('../database/intents');
 
 const trainer = {
+  connector:null,
   createTables() {
-    ddl.forEach(v => db.prepare(v).run());
+    ddl.forEach(v => connector.prepare(v).run());
   },
   populate() {
     files.forEach((f) => {
@@ -15,8 +15,8 @@ const trainer = {
     });
   },
   importFile(f) {
-    db.prepare(intent.clear).run({ "name": f.name });
-    const stm = db.prepare(intent.insert);
+    connector.prepare(intent.clear).run({ "name": f.name });
+    const stm = connector.prepare(intent.insert);
     stm.run({ "name": f.name, "data": JSON.stringify(f.data) });
   }
 };

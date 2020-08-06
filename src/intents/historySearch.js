@@ -1,7 +1,4 @@
 const randomResponseFrom = require('../lib/randomElement.js');
-const substitutions = require('../lib/substitutions.js');
-const memory = require('../dao/memory.js');
-const persist = require('../dao/persist.js');
 const execSync = require('child_process').execSync;
 const historySearch = {
   name: "historySearch",

@@ -16,6 +16,17 @@ if (method === 'process') {
   }
 }
 
+if (method === 'terminal') {
+  if (args.length === 0) {
+    console.log("No text provided");
+    console.log("usage: ./run.js process <USER> <TEXT>");
+  } else {
+    JarbasBrain.debug(null);
+    const result = JarbasBrain.process(args.join(' '));
+    console.log(result.value);
+  }
+}
+
 if (method === 'train') {
   console.time('Training');
   JarbasBrain.train();
