@@ -3,7 +3,7 @@
   "data": {
     "regular_expression_entries": [
       {
-        "value": "(me )?(veja|procure|localize|encontre|lembre|mostre)?(-me| para mim|por favor|por obséquio)? ?(no|o|do)? ?(meu)? ?historico (?<needle>.+)",
+        "value": "(me )?(veja|diga|fale|procure|localize|encontre|lembre|mostre)?(-me| para mim|por favor|por obséquio)? ?(no|o|do)? ?(meu)? ?(historico|histórico) (?<needle>.+)",
         "key": "HISTORY_SEARCH",
         "responses": [
           "Histórico de comandos\n:HISTORY"

@@ -1,15 +1,13 @@
 const randomResponseFrom = require('../lib/randomElement.js');
-const execSync = require('child_process').execSync;
-const historySearch = {
-  name: "historySearch",
+const listIntents = {
+  name: "listIntents",
   info:{
-    label:"Buscar comandos no histórico do shell",
-    example:"procure no meu historico git clone",
+    label:"Apresentar as ações que sou capaz de executar",
+    example:"quais comandos você consegue realizar",
     hidden:false
   },
   data: null,
   match: null,
-  needle:null,
   key: null,
   match(v, user, db) {
     this.load(db);
@@ -24,7 +22,6 @@ const historySearch = {
         let match = str.match(reg);
         if (match) {
           this.match = this.data.regular_expression_entries[i].key;
-          this.needle = match.groups.needle;
           this.key = i;
           return true;
         }
@@ -36,9 +33,9 @@ const historySearch = {
     let response;
     if (this.match === 'EXACT') {
       response = randomResponseFrom(this.data.entries[this.key]);
-    } else if (this.match === 'HISTORY_SEARCH') {
+    } else if (this.match === 'LIST_INTENTS') {
       response = randomResponseFrom(this.data.regular_expression_entries[this.key].responses);
-      response = response.split(':HISTORY').join(this.getHistory(this.needle));
+      response = response.split(':INTENTS').join(this.getIntents());
     } 
     return {
       original: v,
@@ -48,18 +45,13 @@ const historySearch = {
       type: 'msg'
     }
   },
-  getHistory(needle) {
-    let data;
-    try{
-      const shell= execSync('echo -n $SHELL').toString();
-      const bin= execSync('echo -n $(basename $SHELL)').toString();
-      if(bin=="zsh"){
-        data = execSync('export HISTSIZE=50000;export HISTFILE=~/.$(basename $SHELL)_history; fc -R;fc -l 1|grep "'+needle+'"',{"shell":shell}).toString();
-      }else{
-        data = execSync('export HISTFILE=~/.$(basename $SHELL)_history; set -o history;history|grep "'+needle+'"',{"shell":shell}).toString();
-      }
-    }catch(e){
-      return e;
+  getIntents() {
+    let data='';
+    const intent_list = require('../intents');
+    for (let i = 0; i < intent_list.data.length; i++) {
+      if (intent_list.data[i].info && !intent_list.data[i].info.hidden) {
+        data+=intent_list.data[i].info.label+"\n\tExemplo: "+intent_list.data[i].info.example+"\n";
+      };
     }
     return data;
   },
@@ -70,4 +62,4 @@ const historySearch = {
     }
   }
 };
-module.exports = historySearch;
+module.exports = listIntents;

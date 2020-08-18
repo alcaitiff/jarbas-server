@@ -5,6 +5,11 @@ const persist = require('../dao/persist.js');
 const botNameQuestion = require('../../database/questions/botname.json');
 const greet = {
   name: "greet",
+  info:{
+    label:"Cumprimentar o usuário",
+    example:"Olá",
+    hidden:true
+  },
   data: null,
   match: null,
   named: null,

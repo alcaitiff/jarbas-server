@@ -1,0 +1,19 @@
+{
+  "name": "aptUpdate",
+  "data": {
+    "regular_expression_entries": [
+      {
+        "value": "(por favor|me )? ?(atualize o) (sistema|sistema operacional|computador) ?(por favor)?",
+        "key": "UPDATE",
+        "responses": [
+          "Certo:\n:UPDATE",
+          "OK:\n:UPDATE",
+          "Com certeza:\n:UPDATE",
+          "É pra já:\n:UPDATE",
+          "Claro:\n:UPDATE"
+        ]
+      }
+    ],
+    "entries": {}
+  }
+}

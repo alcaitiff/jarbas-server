@@ -1,0 +1,29 @@
+{
+  "name": "listIntents",
+  "data": {
+    "regular_expression_entries": [
+      {
+        "value": "(me )?(veja|diga|fale|apresente|mostre) (-me| para mim|por favor|por obséquio)? ?(quais)? ?(o|os|a|as)? ?(seus|suas)? ?(comandos|coisas|frases|atitudes|ações|acoes|capacidades) ?(que)? ?(você|voce)? ?(pode|consegue|é capaz|e capaz)? ?(de)? ?(fazer|realizar|executar)?",
+        "key": "LIST_INTENTS",
+        "responses": [
+          "Eu sou capaz de:\n:INTENTS"
+        ]
+      },
+      {
+        "value": "(me )?(veja|diga|fale|apresente|mostre)?(-me| para mim| por favor| por obséquio)? ?(o que) ?(você|voce)? ?(faz|pode|consegue|é capaz|e capaz) ?(de)? ?(fazer|realizar|executar)?(\\?)?",
+        "key": "LIST_INTENTS",
+        "responses": [
+          "Eu sou capaz de:\n:INTENTS"
+        ]
+      },
+      {
+        "value": "(me )?(veja|diga|fale|apresente|mostre)?(-me| para mim|por favor|por obséquio)? ?(quais) (comandos|coisas|frases|atitudes|ações|acoes|capacidades) (você|voce)? ?(pode|consegue|é capaz|e capaz) (de)? ?(fazer|realizar|executar)?(\\?)?",
+        "key": "LIST_INTENTS",
+        "responses": [
+          "Eu sou capaz de:\n:INTENTS"
+        ]
+      }
+    ],
+    "entries": {}
+  }
+}

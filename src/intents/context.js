@@ -4,6 +4,11 @@ const memory = require('../dao/memory.js');
 const persist = require('../dao/persist.js');
 const context = {
   name: "context",
+  info:{
+    label:"Realizar perguntas de acordo com o contexto",
+    example:"",
+    hidden:true
+  },
   data: null,
   context: null,
   matchType:null,
